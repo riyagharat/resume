@@ -1,96 +1,56 @@
-(function($) {
-	"use strict";
-	var nav = $('nav');
-	var navHeight = nav.outerHeight();
-
-	$(window).trigger('scroll');
-	$(window).on('scroll', function() {
-		var pixels = 50;
-		var top = 1200;
-		if ($(window).scrollTop() > pixels) {
-			$('.navbar-expand-md').addClass('navbar-reduce');
-			$('.navbar-expand-md').removeClass('navbar-trans');
-		} else {
-			$('.navbar-expand-md').addClass('navbar-trans');
-			$('.navbar-expand-md').removeClass('navbar-reduce');
-		}
-		if ($(window).scrollTop() > top) {
-			$('.scrolltop-mf').fadeIn(1000, "easeInOutExpo");
-		} else {
-			$('.scrolltop-mf').fadeOut(1000, "easeInOutExpo");
-		}
-	});
-
-
-	/*--/ Star Typed /--*/
-	if ($('.text-slider').length == 1) {
-		var typed_strings = $('.text-slider-items').text();
-		var typed = new Typed('.text-slider', {
-			strings: typed_strings.split(','),
-			typeSpeed: 80,
-			loop: true,
-			backDelay: 1100,
-			backSpeed: 30
-		});
+var TxtRotate = function(el, toRotate, period) {
+	this.toRotate = toRotate;
+	this.el = el;
+	this.loopNum = 0;
+	this.period = parseInt(period, 10) || 2000;
+	this.txt = '';
+	this.tick();
+	this.isDeleting = false;
+  };
+  
+  TxtRotate.prototype.tick = function() {
+	var i = this.loopNum % this.toRotate.length;
+	var fullTxt = this.toRotate[i];
+  
+	if (this.isDeleting) {
+	  this.txt = fullTxt.substring(0, this.txt.length - 1);
+	} else {
+	  this.txt = fullTxt.substring(0, this.txt.length + 1);
 	}
-
-	$('.navigation').onePageNav({
-		scrollOffset: 0
-	});
-
-	$(".navbar-collapse a").on('click', function() {
-		$(".navbar-collapse.collapse").removeClass('in');
-	});
-
-
-	$(window).scroll(function() {
-
-		var scrollTop = $(window).scrollTop();
-
-		if (scrollTop > 200) {
-			$('.navbar-default').css('display', 'block');
-			$('.navbar-default').addClass('fixed-to-top');
-
-		} else if (scrollTop == 0) {
-
-			$('.navbar-default').removeClass('fixed-to-top');
-		}
-	});
-
-
-	function navbar() {
-		if ($(window).scrollTop() > 1) {
-			$('#navigation').addClass('show-nav');
-		} else {
-			$('#navigation').removeClass('show-nav');
-		}
-
+  
+	this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+  
+	var that = this;
+	var delta = 300 - Math.random() * 100;
+  
+	if (this.isDeleting) { delta /= 2; }
+  
+	if (!this.isDeleting && this.txt === fullTxt) {
+	  delta = this.period;
+	  this.isDeleting = true;
+	} else if (this.isDeleting && this.txt === '') {
+	  this.isDeleting = false;
+	  this.loopNum++;
+	  delta = 500;
 	}
-
-	$(document).ready(function() {
-		var browserWidth = $(window).width();
-		if (browserWidth > 560) {
-			$(window).scroll(function() {
-				navbar();
-			});
-		}
-	});
-
-
-	$(window).resize(function() {
-		var browserWidth = $(window).width();
-		if (browserWidth > 560) {
-			$(window).scroll(function() {
-				navbar();
-			});
-		}
-	});
-
-	new WOW().init();
-
-})(jQuery);
-
-
-baguetteBox.run('.gallery', {
-	fullscreen: false,
-});
+  
+	setTimeout(function() {
+	  that.tick();
+	}, delta);
+  };
+  
+  window.onload = function() {
+	var elements = document.getElementsByClassName('txt-rotate');
+	for (var i=0; i<elements.length; i++) {
+	  var toRotate = elements[i].getAttribute('data-rotate');
+	  var period = elements[i].getAttribute('data-period');
+	  if (toRotate) {
+		new TxtRotate(elements[i], JSON.parse(toRotate), period);
+	  }
+	}
+	// INJECT CSS
+	var css = document.createElement("style");
+	css.type = "text/css";
+	css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+	document.body.appendChild(css);
+  };
