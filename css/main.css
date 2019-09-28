@@ -72,8 +72,12 @@ a:after {
 
 /* Add a black background color to the top navigation */
 .topnav {
+  z-index:10;
   background-color: black;
   overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
 }
 
 /* Style the links inside the navigation bar */
@@ -126,6 +130,10 @@ a:after {
     display: block;
     text-align: left;
   }
+}
+
+.main {
+  margin-top: 30px; /* Add a top margin to avoid content overlay */
 }
 
 /*---------------------------------------------------
