@@ -99,7 +99,7 @@ a:after {
 
 /* Add an active class to highlight the current page */
 .topnav a.active {
-  background-color: #8C6872;
+  background-color: #99BFBF;
   color: black;
 }
 
@@ -182,7 +182,7 @@ a:after {
 
 /* About Wrap */
 .about {
-  background: #732959;
+  background:black;
   padding-top: 60px;
   padding-bottom: 60px;
   color: white;
@@ -200,7 +200,7 @@ a:after {
 }
 
 .footer {
-  background: #8C6872;
+  background: #99BFBF;
   padding-top: 50px;
   padding-bottom: 50px;
 }
