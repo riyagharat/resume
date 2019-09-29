@@ -187,6 +187,33 @@ footer{
   font-style: italic;
 }
 
+/* Style buttons */
+.btn {
+  background-color: #99BFBF;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 20px;
+  align-content: center;
+  padding-top: 10px;
+  position: relative;
+  size: 2px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: rgb(82, 165, 165);
+}
+
+.resumebtn {
+  align-content: center;
+  align-items: center;
+  align-self: auto;
+  padding-top: 10px;
+  position: relative;
+}
+
 /*---------------------------------------------------
   SECTION WRAPS
 ---------------------------------------------------*/
