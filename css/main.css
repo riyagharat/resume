@@ -17,10 +17,18 @@ body {
 }
 
 /* Titles */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5 {
   font-family: "Raleway";
   font-weight: 300;
   color: #333;
+}
+
+.section-header {
+  font-family: "Raleway";
+  font-weight: 300;
+  color: white;
+  margin-bottom: 25px;
+	text-align: center;
 }
 
 /* Paragraph & Typographic */
@@ -70,17 +78,15 @@ a:after {
   padding: 0;
 }
 
-/* Add a black background color to the top navigation */
 .topnav {
   z-index:10;
   background-color: black;
   overflow: hidden;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
+  position: fixed; 
+  top: 0; 
+  width: 100%;
 }
 
-/* Style the links inside the navigation bar */
 .topnav a {
   float: left;
   display: block;
@@ -91,24 +97,20 @@ a:after {
   font-size: 17px;
 }
 
-/* Change the color of links on hover */
 .topnav a:hover {
   background-color: #ddd;
   color: black;
 }
 
-/* Add an active class to highlight the current page */
 .topnav a.active {
   background-color: #99BFBF;
   color: black;
 }
 
-/* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
   display: none;
 }
 
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
@@ -117,7 +119,6 @@ a:after {
   }
 }
 
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media screen and (max-width: 600px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive a.icon {
@@ -136,6 +137,12 @@ a:after {
   margin-top: 30px; /* Add a top margin to avoid content overlay */
 }
 
+.img-responsive {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
 /*---------------------------------------------------
   SECTION WRAPS
 ---------------------------------------------------*/
@@ -151,7 +158,7 @@ a:after {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center center;
-  min-height: 1090px;
+  min-height: 1400px;
   width: 100%;
   
   -webkit-background-size: 100%;
@@ -220,10 +227,7 @@ a:after {
 /* social icons: */
 .footer i {
   padding-right: 8px;
-  /*color: #1abc9c;*/
 }
-
-/* Global Values */
 
 .desc {
   padding-top: 50px;
@@ -249,7 +253,7 @@ a:after {
 }
 
 
-sm {
+.sm {
   font-size: 12px;
 }
 
@@ -261,10 +265,9 @@ sm {
   margin-bottom: 10px;
 }
 
-/* define some CSS3 animations: */
 body {
-  /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .animated {
@@ -325,7 +328,6 @@ body {
   animation-name: fadeIn;
 }
 
-/* 1 */
 @-webkit-keyframes fadeInUp {
   0% {
     opacity: 0;
